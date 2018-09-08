@@ -1,0 +1,1 @@
+kaggle_data_path = '../Data/Auto/gun-violence-data_01-2013_03-2018.csv'
