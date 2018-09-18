@@ -1,0 +1,1200 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Geography}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}226}]:} \PY{c+c1}{\PYZsh{} Import and configuration}
+          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} notebook
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{os}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          
+          \PY{k+kn}{from} \PY{n+nn}{config} \PY{k}{import} \PY{o}{*}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}227}]:} \PY{c+c1}{\PYZsh{} Load clean data from CSV}
+          \PY{n}{incident\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{incidents\PYZus{}clean\PYZus{}data\PYZus{}path}\PY{p}{)}
+          \PY{n}{census\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{census\PYZus{}data\PYZus{}path}\PY{p}{)}
+          
+          \PY{n}{incident\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}227}]:}    Year      State Name  Number of Killed  Number of Injured  \textbackslash{}
+          0  2013    Pennsylvania                 0                  4   
+          1  2013      California                 1                  3   
+          2  2013            Ohio                 1                  3   
+          3  2013        Colorado                 4                  0   
+          4  2013  North Carolina                 2                  2   
+          
+                                                 Incident Info  Latitude  Longitude  \textbackslash{}
+          0  Shot - Wounded/Injured||Mass Shooting (4+ vict{\ldots}   40.3467   -79.8559   
+          1  Shot - Wounded/Injured||Shot - Dead (murder, a{\ldots}   33.9090  -118.3330   
+          2  Shot - Wounded/Injured||Shot - Dead (murder, a{\ldots}   41.4455   -82.1377   
+          3  Shot - Dead (murder, accidental, suicide)||Off{\ldots}   39.6518  -104.8020   
+          4  Shot - Wounded/Injured||Shot - Dead (murder, a{\ldots}   36.1140   -79.9569   
+          
+                               Participant Age  \textbackslash{}
+          0                              0::20   
+          1                              0::20   
+          2  0::25||1::31||2::33||3::34||4::33   
+          3         0::29||1::33||2::56||3::33   
+          4         0::18||1::46||2::14||3::47   
+          
+                                         Participant Age Group  \textbackslash{}
+          0  0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A{\ldots}   
+          1  0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A{\ldots}   
+          2  0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A{\ldots}   
+          3  0::Adult 18+||1::Adult 18+||2::Adult 18+||3::A{\ldots}   
+          4  0::Adult 18+||1::Adult 18+||2::Teen 12-17||3::{\ldots}   
+          
+                                      Participant Gender Participant Relationship  \textbackslash{}
+          0         0::Male||1::Male||3::Male||4::Female                      NaN   
+          1                                      0::Male                      NaN   
+          2  0::Male||1::Male||2::Male||3::Male||4::Male                      NaN   
+          3         0::Female||1::Male||2::Male||3::Male                      NaN   
+          4       0::Female||1::Male||2::Male||3::Female                3::Family   
+          
+                                            Participant Status  \textbackslash{}
+          0  0::Arrested||1::Injured||2::Injured||3::Injure{\ldots}   
+          1      0::Killed||1::Injured||2::Injured||3::Injured   
+          2  0::Injured, Unharmed, Arrested||1::Unharmed, A{\ldots}   
+          3         0::Killed||1::Killed||2::Killed||3::Killed   
+          4       0::Injured||1::Injured||2::Killed||3::Killed   
+          
+                                              Participant Type State Abbr  
+          0  0::Victim||1::Victim||2::Victim||3::Victim||4:{\ldots}         PA  
+          1  0::Victim||1::Victim||2::Victim||3::Victim||4:{\ldots}         CA  
+          2  0::Subject-Suspect||1::Subject-Suspect||2::Vic{\ldots}         OH  
+          3  0::Victim||1::Victim||2::Victim||3::Subject-Su{\ldots}         CO  
+          4  0::Victim||1::Victim||2::Victim||3::Subject-Su{\ldots}         NC  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}228}]:} \PY{n}{census\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+          \PY{n}{census\PYZus{}data} \PY{o}{=} \PY{n}{census\PYZus{}data}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{census\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}228}]:}    State Name      2013      2014      2015      2016      2017
+          0     Alabama   4833722   4849377   4858979   4863300   4874747
+          1      Alaska    735132    736732    738432    741894    739795
+          2     Arizona   6626624   6731484   6828065   6931071   7016270
+          3    Arkansas   2959373   2966369   2978204   2988248   3004279
+          4  California  38332521  38802500  39144818  39250017  39536653
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}229}]:} \PY{c+c1}{\PYZsh{} Your code for geography\PYZhy{}related analysis starts here}
+          \PY{n}{clean\PYZus{}incident\PYZus{}data} \PY{o}{=} \PY{n}{incident\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Killed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Injured}\PY{l+s+s1}{\PYZsq{}}    
+          \PY{p}{]}\PY{p}{]}
+          \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}229}]:}    Year      State Name  Number of Killed  Number of Injured
+          0  2013    Pennsylvania                 0                  4
+          1  2013      California                 1                  3
+          2  2013            Ohio                 1                  3
+          3  2013        Colorado                 4                  0
+          4  2013  North Carolina                 2                  2
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}230}]:} \PY{n}{year\PYZus{}group} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{count\PYZus{}years} \PY{o}{=} \PY{n}{year\PYZus{}group}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+          \PY{n}{count\PYZus{}years} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{count\PYZus{}years}\PY{p}{)}
+          
+          \PY{n}{count\PYZus{}years} \PY{o}{=} \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Incidents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{count\PYZus{}years}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}230}]:}    Year  Total Incidents
+          3  2014            51854
+          2  2015            53579
+          1  2016            58763
+          0  2017            61401
+          4  2018            13802
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}232}]:} \PY{c+c1}{\PYZsh{}create group based on values in the year column}
+          \PY{n}{killed\PYZus{}data} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Killed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+          \PY{n}{injured\PYZus{}data} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Injured}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{count\PYZus{}years} \PY{o}{=} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+          \PY{n}{count\PYZus{}years}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}232}]:} Year
+          2013      278
+          2014    51854
+          2015    53579
+          2016    58763
+          2017    61401
+          2018    13802
+          Name: Year, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}233}]:} \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{year\PYZus{}counts}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{index}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Incidents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts}
+          
+          \PY{n}{year\PYZus{}counts} \PY{o}{=} \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{year\PYZus{}counts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}233}]:}    Year  Total Incidents
+          3  2014            51854
+          2  2015            53579
+          1  2016            58763
+          0  2017            61401
+          4  2018            13802
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}250}]:} \PY{n}{x\PYZus{}axis} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{year\PYZus{}counts}\PY{p}{)}\PY{p}{)}
+          \PY{n}{tick\PYZus{}locations} \PY{o}{=} \PY{p}{[}\PY{n}{value}\PY{o}{+}\PY{l+m+mf}{0.3} \PY{k}{for} \PY{n}{value} \PY{o+ow}{in} \PY{n}{x\PYZus{}axis}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}293}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{x\PYZus{}axis}\PY{p}{,} \PY{n}{year\PYZus{}counts}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total Incidents}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{n}{align}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{edge}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{tick\PYZus{}locations}\PY{p}{,} \PY{n}{year\PYZus{}counts}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vertical}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mf}{0.10000}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x\PYZus{}axis}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{n}{year\PYZus{}counts}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total Incidents}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{15000}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total Incidents Nationwide by Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total Incidents Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}293}]:} Text(0,0.5,'Total Incidents Count')
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}304}]:} \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+          
+          \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Incidents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Killed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Injured}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}304}]:}       Number of Killed  Number of Injured  Total Incidents
+          Year                                                      
+          2013               317                979             1296
+          2014             12557              23002            35559
+          2015             13484              26967            40451
+          2016             15066              30580            45646
+          2017             15511              30703            46214
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}316}]:} \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}315}]:} \PY{n}{df\PYZus{}2013} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Year}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{2013}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+          \PY{n}{state\PYZus{}counts\PYZus{}2013} \PY{o}{=} \PY{n}{df\PYZus{}2013}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+          \PY{n}{df\PYZus{}2013} \PY{o}{=} \PY{n}{state\PYZus{}counts\PYZus{}2013}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}307}]:} \PY{c+c1}{\PYZsh{}sum incidents}
+          \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+          
+          \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total Incidents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Killed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Injured}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}307}]:}       Number of Killed  Number of Injured  Total Incidents
+          Year                                                      
+          2013               317                979             1296
+          2014             12557              23002            35559
+          2015             13484              26967            40451
+          2016             15066              30580            45646
+          2017             15511              30703            46214
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}308}]:} \PY{n}{state\PYZus{}count\PYZus{}13} \PY{o}{=} \PY{n}{group\PYZus{}2013}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+          \PY{n}{state\PYZus{}count\PYZus{}13} \PY{o}{=} \PY{n}{state\PYZus{}count\PYZus{}13}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+          \PY{n}{state\PYZus{}count\PYZus{}13}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}308}]:} California      39
+          Pennsylvania    20
+          Illinois        18
+          New York        16
+          Michigan        14
+          Name: State Name, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}239}]:} \PY{n}{group\PYZus{}state} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{group\PYZus{}state} \PY{o}{=} \PY{n}{group\PYZus{}state}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+          \PY{n}{group\PYZus{}state\PYZus{}df} \PY{o}{=} \PY{n}{group\PYZus{}state}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{group\PYZus{}state\PYZus{}df}  
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}239}]:}                      Number of Killed                                         \textbackslash{}
+          Year                             2013    2014    2015    2016    2017   2018   
+          State Name                                                                     
+          Alabama                           3.0   325.0   385.0   488.0   544.0  135.0   
+          Alaska                            NaN    29.0    70.0    88.0    69.0   11.0   
+          Arizona                           8.0   220.0   215.0   277.0   289.0   85.0   
+          Arkansas                          NaN   169.0   155.0   190.0   216.0   43.0   
+          California                       46.0  1320.0  1204.0  1265.0  1423.0  304.0   
+          Colorado                          4.0   149.0   176.0   207.0   199.0   61.0   
+          Connecticut                       2.0    75.0    90.0    68.0    89.0   17.0   
+          Delaware                          3.0    50.0    58.0    42.0    56.0    8.0   
+          District of Columbia             12.0    92.0   124.0   106.0   100.0   25.0   
+          Florida                          22.0   873.0   796.0  1001.0   950.0  267.0   
+          Georgia                           5.0   522.0   595.0   548.0   658.0  128.0   
+          Hawaii                            NaN     8.0    12.0    34.0     8.0    1.0   
+          Idaho                             NaN    31.0    40.0    34.0    47.0   14.0   
+          Illinois                         14.0   637.0   688.0   946.0   959.0  165.0   
+          Indiana                           9.0   330.0   346.0   420.0   407.0   96.0   
+          Iowa                              NaN    62.0    60.0    70.0    71.0   10.0   
+          Kansas                            6.0    94.0   127.0   125.0   152.0   38.0   
+          Kentucky                          4.0   194.0   230.0   288.0   273.0   77.0   
+          Louisiana                         8.0   465.0   501.0   527.0   549.0  129.0   
+          Maine                             NaN    22.0    31.0    18.0    33.0    8.0   
+          Maryland                          5.0   294.0   404.0   429.0   480.0   79.0   
+          Massachusetts                     NaN   101.0   109.0   112.0   128.0   22.0   
+          Michigan                          9.0   348.0   355.0   385.0   369.0  122.0   
+          Minnesota                         3.0    86.0   123.0   108.0   115.0   26.0   
+          Mississippi                       2.0   231.0   223.0   290.0   324.0  106.0   
+          Missouri                          9.0   383.0   492.0   515.0   609.0  128.0   
+          Montana                           NaN    32.0    34.0    42.0    41.0    5.0   
+          Nebraska                          0.0    51.0    59.0    57.0    47.0   11.0   
+          Nevada                            0.0   150.0   183.0   205.0   200.0   61.0   
+          New Hampshire                     NaN    22.0    22.0    20.0    23.0    1.0   
+          New Jersey                       12.0   278.0   249.0   297.0   275.0   57.0   
+          New Mexico                        5.0    90.0   116.0   122.0   125.0   37.0   
+          New York                         15.0   397.0   463.0   416.0   347.0   67.0   
+          North Carolina                    5.0   487.0   493.0   576.0   556.0  108.0   
+          North Dakota                      NaN    15.0    18.0    18.0    15.0    3.0   
+          Ohio                             10.0   494.0   537.0   628.0   700.0  139.0   
+          Oklahoma                         14.0   171.0   220.0   243.0   249.0   44.0   
+          Oregon                            NaN    96.0   125.0    95.0    99.0   31.0   
+          Pennsylvania                     13.0   547.0   508.0   556.0   635.0  136.0   
+          Rhode Island                      1.0    18.0    14.0    14.0    11.0    5.0   
+          South Carolina                   11.0   344.0   384.0   387.0   395.0   89.0   
+          South Dakota                      NaN    16.0    25.0    23.0    19.0    7.0   
+          Tennessee                        14.0   352.0   395.0   470.0   495.0   98.0   
+          Texas                            24.0  1094.0  1136.0  1313.0  1169.0  310.0   
+          Utah                              4.0    62.0    66.0    70.0    70.0   10.0   
+          Vermont                           NaN    18.0    13.0    13.0     9.0    4.0   
+          Virginia                          3.0   284.0   317.0   398.0   385.0   72.0   
+          Washington                        8.0   181.0   197.0   183.0   230.0   54.0   
+          West Virginia                     4.0    70.0    58.0    99.0    81.0   23.0   
+          Wisconsin                         0.0   163.0   222.0   222.0   209.0   46.0   
+          Wyoming                           NaN    15.0    21.0    18.0     9.0   10.0   
+          
+                               Number of Injured                                         
+          Year                              2013    2014    2015    2016    2017   2018  
+          State Name                                                                     
+          Alabama                            9.0   591.0   562.0   761.0   856.0  219.0  
+          Alaska                             NaN    49.0    84.0   103.0    70.0   19.0  
+          Arizona                           16.0   222.0   193.0   294.0   298.0   73.0  
+          Arkansas                           NaN   231.0   245.0   351.0   437.0   83.0  
+          California                       139.0  1607.0  1617.0  1896.0  1953.0  432.0  
+          Colorado                           9.0   164.0   282.0   299.0   300.0   79.0  
+          Connecticut                       13.0   206.0   331.0   358.0   293.0   57.0  
+          Delaware                          10.0   181.0   206.0   187.0   241.0   28.0  
+          District of Columbia              32.0   298.0   345.0   339.0   340.0   61.0  
+          Florida                           36.0  1463.0  1547.0  1846.0  1801.0  379.0  
+          Georgia                           26.0   817.0  1096.0   857.0  1057.0  203.0  
+          Hawaii                             NaN    13.0    27.0    17.0    20.0    8.0  
+          Idaho                              NaN    26.0    36.0    44.0    34.0    9.0  
+          Illinois                          78.0  2276.0  2822.0  4137.0  3629.0  572.0  
+          Indiana                           20.0   600.0   703.0   765.0   737.0  131.0  
+          Iowa                               NaN   169.0   193.0   194.0   229.0   36.0  
+          Kansas                            14.0   158.0   190.0   250.0   264.0   55.0  
+          Kentucky                           9.0   318.0   425.0   499.0   518.0  125.0  
+          Louisiana                         52.0   921.0   898.0  1103.0  1184.0  240.0  
+          Maine                              NaN    25.0    31.0    37.0    36.0    3.0  
+          Maryland                          16.0   602.0   783.0   748.0   855.0  163.0  
+          Massachusetts                      NaN   315.0   382.0   468.0   456.0   80.0  
+          Michigan                          62.0   629.0   640.0   700.0   771.0  188.0  
+          Minnesota                          5.0   193.0   155.0   217.0   282.0   64.0  
+          Mississippi                        6.0   317.0   334.0   497.0   593.0  136.0  
+          Missouri                          39.0   647.0   921.0   842.0   921.0  215.0  
+          Montana                            NaN    30.0    38.0    22.0    33.0   13.0  
+          Nebraska                           4.0   148.0   177.0   162.0   152.0   31.0  
+          Nevada                             4.0   153.0   234.0   286.0   218.0   56.0  
+          New Hampshire                      NaN    38.0    26.0    40.0    30.0   10.0  
+          New Jersey                        32.0   628.0   491.0   654.0   663.0   72.0  
+          New Mexico                         4.0    82.0   159.0   133.0   141.0   24.0  
+          New York                          56.0   965.0  1521.0  1275.0  1092.0  150.0  
+          North Carolina                    47.0   884.0  1096.0  1205.0  1153.0  244.0  
+          North Dakota                       NaN    24.0    33.0    33.0    33.0    7.0  
+          Ohio                              30.0  1120.0  1304.0  1455.0  1517.0  277.0  
+          Oklahoma                          12.0   238.0   410.0   414.0   384.0   92.0  
+          Oregon                             NaN   126.0   191.0   168.0   170.0   39.0  
+          Pennsylvania                      58.0  1288.0  1064.0  1220.0  1188.0  238.0  
+          Rhode Island                       7.0    76.0    87.0    84.0    79.0   13.0  
+          South Carolina                    12.0   626.0   737.0   726.0   791.0  192.0  
+          South Dakota                       NaN    20.0    28.0    32.0    21.0   13.0  
+          Tennessee                         29.0   857.0  1021.0  1163.0  1198.0  210.0  
+          Texas                             41.0  1157.0  1355.0  1614.0  1565.0  374.0  
+          Utah                               1.0    69.0   103.0    86.0   110.0   33.0  
+          Vermont                            NaN    29.0    20.0    10.0    11.0    3.0  
+          Virginia                          29.0   578.0   782.0  1051.0   939.0  187.0  
+          Washington                        12.0   236.0   303.0   301.0   352.0   83.0  
+          West Virginia                      6.0   119.0   159.0   175.0   156.0   34.0  
+          Wisconsin                          4.0   461.0   565.0   450.0   519.0  118.0  
+          Wyoming                            NaN    12.0    15.0    12.0    13.0    0.0  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}240}]:} \PY{n}{avg\PYZus{}year} \PY{o}{=} \PY{n}{combined\PYZus{}data}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+          \PY{n}{avg\PYZus{}year}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        AttributeError                            Traceback (most recent call last)
+
+        <ipython-input-240-554150337970> in <module>()
+    ----> 1 avg\_year = combined\_data.mean()
+          2 avg\_year
+    
+
+        AttributeError: 'Index' object has no attribute 'mean'
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{combined\PYZus{}data} \PY{o}{=} \PY{n}{combined\PYZus{}data}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Wins}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2016 Wins}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Losses}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2016 Losses}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Draws}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2016 Draws}\PY{l+s+s2}{\PYZdq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+        \PY{n}{combined\PYZus{}wrestlers\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}206}]:} \PY{n}{combined\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{group\PYZus{}state\PYZus{}df}\PY{p}{,} \PY{n}{census\PYZus{}data}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{outer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{State Name}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{combined\PYZus{}data} \PY{o}{=} \PY{n}{combined\PYZus{}data}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{combined\PYZus{}data}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}wgdav\textbackslash{}AppData\textbackslash{}Local\textbackslash{}conda\textbackslash{}conda\textbackslash{}envs\textbackslash{}PythonData\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}pandas\textbackslash{}core\textbackslash{}reshape\textbackslash{}merge.py:543: UserWarning: merging between different levels can give an unintended result (2 levels on the left, 1 on the right)
+  warnings.warn(msg, UserWarning)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}206}]:}               State Name  (Number of Killed, 2013)  (Number of Killed, 2014)  \textbackslash{}
+          0                Alabama                       3.0                     325.0   
+          1                 Alaska                       0.0                      29.0   
+          2                Arizona                       8.0                     220.0   
+          3               Arkansas                       0.0                     169.0   
+          4             California                      46.0                    1320.0   
+          5               Colorado                       4.0                     149.0   
+          6            Connecticut                       2.0                      75.0   
+          7               Delaware                       3.0                      50.0   
+          8   District of Columbia                      12.0                      92.0   
+          9                Florida                      22.0                     873.0   
+          10               Georgia                       5.0                     522.0   
+          11                Hawaii                       0.0                       8.0   
+          12                 Idaho                       0.0                      31.0   
+          13              Illinois                      14.0                     637.0   
+          14               Indiana                       9.0                     330.0   
+          15                  Iowa                       0.0                      62.0   
+          16                Kansas                       6.0                      94.0   
+          17              Kentucky                       4.0                     194.0   
+          18             Louisiana                       8.0                     465.0   
+          19                 Maine                       0.0                      22.0   
+          20              Maryland                       5.0                     294.0   
+          21         Massachusetts                       0.0                     101.0   
+          22              Michigan                       9.0                     348.0   
+          23             Minnesota                       3.0                      86.0   
+          24           Mississippi                       2.0                     231.0   
+          25              Missouri                       9.0                     383.0   
+          26               Montana                       0.0                      32.0   
+          27              Nebraska                       0.0                      51.0   
+          28                Nevada                       0.0                     150.0   
+          29         New Hampshire                       0.0                      22.0   
+          30            New Jersey                      12.0                     278.0   
+          31            New Mexico                       5.0                      90.0   
+          32              New York                      15.0                     397.0   
+          33        North Carolina                       5.0                     487.0   
+          34          North Dakota                       0.0                      15.0   
+          35                  Ohio                      10.0                     494.0   
+          36              Oklahoma                      14.0                     171.0   
+          37                Oregon                       0.0                      96.0   
+          38          Pennsylvania                      13.0                     547.0   
+          39          Rhode Island                       1.0                      18.0   
+          40        South Carolina                      11.0                     344.0   
+          41          South Dakota                       0.0                      16.0   
+          42             Tennessee                      14.0                     352.0   
+          43                 Texas                      24.0                    1094.0   
+          44                  Utah                       4.0                      62.0   
+          45               Vermont                       0.0                      18.0   
+          46              Virginia                       3.0                     284.0   
+          47            Washington                       8.0                     181.0   
+          48         West Virginia                       4.0                      70.0   
+          49             Wisconsin                       0.0                     163.0   
+          50               Wyoming                       0.0                      15.0   
+          51          Puerto Rico                        0.0                       0.0   
+          
+              (Number of Killed, 2015)  (Number of Killed, 2016)  \textbackslash{}
+          0                      385.0                     488.0   
+          1                       70.0                      88.0   
+          2                      215.0                     277.0   
+          3                      155.0                     190.0   
+          4                     1204.0                    1265.0   
+          5                      176.0                     207.0   
+          6                       90.0                      68.0   
+          7                       58.0                      42.0   
+          8                      124.0                     106.0   
+          9                      796.0                    1001.0   
+          10                     595.0                     548.0   
+          11                      12.0                      34.0   
+          12                      40.0                      34.0   
+          13                     688.0                     946.0   
+          14                     346.0                     420.0   
+          15                      60.0                      70.0   
+          16                     127.0                     125.0   
+          17                     230.0                     288.0   
+          18                     501.0                     527.0   
+          19                      31.0                      18.0   
+          20                     404.0                     429.0   
+          21                     109.0                     112.0   
+          22                     355.0                     385.0   
+          23                     123.0                     108.0   
+          24                     223.0                     290.0   
+          25                     492.0                     515.0   
+          26                      34.0                      42.0   
+          27                      59.0                      57.0   
+          28                     183.0                     205.0   
+          29                      22.0                      20.0   
+          30                     249.0                     297.0   
+          31                     116.0                     122.0   
+          32                     463.0                     416.0   
+          33                     493.0                     576.0   
+          34                      18.0                      18.0   
+          35                     537.0                     628.0   
+          36                     220.0                     243.0   
+          37                     125.0                      95.0   
+          38                     508.0                     556.0   
+          39                      14.0                      14.0   
+          40                     384.0                     387.0   
+          41                      25.0                      23.0   
+          42                     395.0                     470.0   
+          43                    1136.0                    1313.0   
+          44                      66.0                      70.0   
+          45                      13.0                      13.0   
+          46                     317.0                     398.0   
+          47                     197.0                     183.0   
+          48                      58.0                      99.0   
+          49                     222.0                     222.0   
+          50                      21.0                      18.0   
+          51                       0.0                       0.0   
+          
+              (Number of Killed, 2017)  (Number of Killed, 2018)  \textbackslash{}
+          0                      544.0                     135.0   
+          1                       69.0                      11.0   
+          2                      289.0                      85.0   
+          3                      216.0                      43.0   
+          4                     1423.0                     304.0   
+          5                      199.0                      61.0   
+          6                       89.0                      17.0   
+          7                       56.0                       8.0   
+          8                      100.0                      25.0   
+          9                      950.0                     267.0   
+          10                     658.0                     128.0   
+          11                       8.0                       1.0   
+          12                      47.0                      14.0   
+          13                     959.0                     165.0   
+          14                     407.0                      96.0   
+          15                      71.0                      10.0   
+          16                     152.0                      38.0   
+          17                     273.0                      77.0   
+          18                     549.0                     129.0   
+          19                      33.0                       8.0   
+          20                     480.0                      79.0   
+          21                     128.0                      22.0   
+          22                     369.0                     122.0   
+          23                     115.0                      26.0   
+          24                     324.0                     106.0   
+          25                     609.0                     128.0   
+          26                      41.0                       5.0   
+          27                      47.0                      11.0   
+          28                     200.0                      61.0   
+          29                      23.0                       1.0   
+          30                     275.0                      57.0   
+          31                     125.0                      37.0   
+          32                     347.0                      67.0   
+          33                     556.0                     108.0   
+          34                      15.0                       3.0   
+          35                     700.0                     139.0   
+          36                     249.0                      44.0   
+          37                      99.0                      31.0   
+          38                     635.0                     136.0   
+          39                      11.0                       5.0   
+          40                     395.0                      89.0   
+          41                      19.0                       7.0   
+          42                     495.0                      98.0   
+          43                    1169.0                     310.0   
+          44                      70.0                      10.0   
+          45                       9.0                       4.0   
+          46                     385.0                      72.0   
+          47                     230.0                      54.0   
+          48                      81.0                      23.0   
+          49                     209.0                      46.0   
+          50                       9.0                      10.0   
+          51                       0.0                       0.0   
+          
+              (Number of Injured, 2013)  (Number of Injured, 2014)  \textbackslash{}
+          0                         9.0                      591.0   
+          1                         0.0                       49.0   
+          2                        16.0                      222.0   
+          3                         0.0                      231.0   
+          4                       139.0                     1607.0   
+          5                         9.0                      164.0   
+          6                        13.0                      206.0   
+          7                        10.0                      181.0   
+          8                        32.0                      298.0   
+          9                        36.0                     1463.0   
+          10                       26.0                      817.0   
+          11                        0.0                       13.0   
+          12                        0.0                       26.0   
+          13                       78.0                     2276.0   
+          14                       20.0                      600.0   
+          15                        0.0                      169.0   
+          16                       14.0                      158.0   
+          17                        9.0                      318.0   
+          18                       52.0                      921.0   
+          19                        0.0                       25.0   
+          20                       16.0                      602.0   
+          21                        0.0                      315.0   
+          22                       62.0                      629.0   
+          23                        5.0                      193.0   
+          24                        6.0                      317.0   
+          25                       39.0                      647.0   
+          26                        0.0                       30.0   
+          27                        4.0                      148.0   
+          28                        4.0                      153.0   
+          29                        0.0                       38.0   
+          30                       32.0                      628.0   
+          31                        4.0                       82.0   
+          32                       56.0                      965.0   
+          33                       47.0                      884.0   
+          34                        0.0                       24.0   
+          35                       30.0                     1120.0   
+          36                       12.0                      238.0   
+          37                        0.0                      126.0   
+          38                       58.0                     1288.0   
+          39                        7.0                       76.0   
+          40                       12.0                      626.0   
+          41                        0.0                       20.0   
+          42                       29.0                      857.0   
+          43                       41.0                     1157.0   
+          44                        1.0                       69.0   
+          45                        0.0                       29.0   
+          46                       29.0                      578.0   
+          47                       12.0                      236.0   
+          48                        6.0                      119.0   
+          49                        4.0                      461.0   
+          50                        0.0                       12.0   
+          51                        0.0                        0.0   
+          
+              (Number of Injured, 2015)  (Number of Injured, 2016)  \textbackslash{}
+          0                       562.0                      761.0   
+          1                        84.0                      103.0   
+          2                       193.0                      294.0   
+          3                       245.0                      351.0   
+          4                      1617.0                     1896.0   
+          5                       282.0                      299.0   
+          6                       331.0                      358.0   
+          7                       206.0                      187.0   
+          8                       345.0                      339.0   
+          9                      1547.0                     1846.0   
+          10                     1096.0                      857.0   
+          11                       27.0                       17.0   
+          12                       36.0                       44.0   
+          13                     2822.0                     4137.0   
+          14                      703.0                      765.0   
+          15                      193.0                      194.0   
+          16                      190.0                      250.0   
+          17                      425.0                      499.0   
+          18                      898.0                     1103.0   
+          19                       31.0                       37.0   
+          20                      783.0                      748.0   
+          21                      382.0                      468.0   
+          22                      640.0                      700.0   
+          23                      155.0                      217.0   
+          24                      334.0                      497.0   
+          25                      921.0                      842.0   
+          26                       38.0                       22.0   
+          27                      177.0                      162.0   
+          28                      234.0                      286.0   
+          29                       26.0                       40.0   
+          30                      491.0                      654.0   
+          31                      159.0                      133.0   
+          32                     1521.0                     1275.0   
+          33                     1096.0                     1205.0   
+          34                       33.0                       33.0   
+          35                     1304.0                     1455.0   
+          36                      410.0                      414.0   
+          37                      191.0                      168.0   
+          38                     1064.0                     1220.0   
+          39                       87.0                       84.0   
+          40                      737.0                      726.0   
+          41                       28.0                       32.0   
+          42                     1021.0                     1163.0   
+          43                     1355.0                     1614.0   
+          44                      103.0                       86.0   
+          45                       20.0                       10.0   
+          46                      782.0                     1051.0   
+          47                      303.0                      301.0   
+          48                      159.0                      175.0   
+          49                      565.0                      450.0   
+          50                       15.0                       12.0   
+          51                        0.0                        0.0   
+          
+              (Number of Injured, 2017)  (Number of Injured, 2018)      2013      2014  \textbackslash{}
+          0                       856.0                      219.0   4833722   4849377   
+          1                        70.0                       19.0    735132    736732   
+          2                       298.0                       73.0   6626624   6731484   
+          3                       437.0                       83.0   2959373   2966369   
+          4                      1953.0                      432.0  38332521  38802500   
+          5                       300.0                       79.0   5268367   5355866   
+          6                       293.0                       57.0   3596080   3596677   
+          7                       241.0                       28.0    925749    935614   
+          8                       340.0                       61.0    646449    658893   
+          9                      1801.0                      379.0  19552860  19893297   
+          10                     1057.0                      203.0   9992167  10097343   
+          11                       20.0                        8.0   1404054   1419561   
+          12                       34.0                        9.0   1612136   1634464   
+          13                     3629.0                      572.0  12882135  12880580   
+          14                      737.0                      131.0   6570902   6596855   
+          15                      229.0                       36.0   3090416   3107126   
+          16                      264.0                       55.0   2893957   2904021   
+          17                      518.0                      125.0   4395295   4413457   
+          18                     1184.0                      240.0   4625470   4649676   
+          19                       36.0                        3.0   1328302   1330089   
+          20                      855.0                      163.0   5928814   5976407   
+          21                      456.0                       80.0   6692824   6745408   
+          22                      771.0                      188.0   9895622   9909877   
+          23                      282.0                       64.0   5420380   5457173   
+          24                      593.0                      136.0   2991207   2994079   
+          25                      921.0                      215.0   6044171   6063589   
+          26                       33.0                       13.0   1015165   1023579   
+          27                      152.0                       31.0   1868516   1881503   
+          28                      218.0                       56.0   2790136   2839099   
+          29                       30.0                       10.0   1323459   1326813   
+          30                      663.0                       72.0   8899339   8938175   
+          31                      141.0                       24.0   2085287   2085572   
+          32                     1092.0                      150.0  19651127  19746227   
+          33                     1153.0                      244.0   9848060   9943964   
+          34                       33.0                        7.0    723393    739482   
+          35                     1517.0                      277.0  11570808  11594163   
+          36                      384.0                       92.0   3850568   3878051   
+          37                      170.0                       39.0   3930065   3970239   
+          38                     1188.0                      238.0  12773801  12787209   
+          39                       79.0                       13.0   1051511   1055173   
+          40                      791.0                      192.0   4774839   4832482   
+          41                       21.0                       13.0    844877    853175   
+          42                     1198.0                      210.0   6495978   6549352   
+          43                     1565.0                      374.0  26448193  26956958   
+          44                      110.0                       33.0   2900872   2942902   
+          45                       11.0                        3.0    626630    626562   
+          46                      939.0                      187.0   8260405   8326289   
+          47                      352.0                       83.0   6971406   7061530   
+          48                      156.0                       34.0   1854304   1850326   
+          49                      519.0                      118.0   5742713   5757564   
+          50                       13.0                        0.0    582658    584153   
+          51                        0.0                        0.0   3615086   3548397   
+          
+                  2015      2016      2017  
+          0    4858979   4863300   4874747  
+          1     738432    741894    739795  
+          2    6828065   6931071   7016270  
+          3    2978204   2988248   3004279  
+          4   39144818  39250017  39536653  
+          5    5456574   5540545   5607154  
+          6    3590886   3576452   3588184  
+          7     945934    952065    961939  
+          8     672228    681170    693972  
+          9   20271272  20612439  20984400  
+          10  10214860  10310371  10429379  
+          11   1431603   1428557   1427538  
+          12   1654930   1683140   1716943  
+          13  12859995  12801539  12802023  
+          14   6619680   6633053   6666818  
+          15   3123899   3134693   3145711  
+          16   2911641   2907289   2913123  
+          17   4425092   4436974   4454189  
+          18   4670724   4681666   4684333  
+          19   1329328   1331479   1335907  
+          20   6006401   6016447   6052177  
+          21   6794422   6811779   6859819  
+          22   9922576   9928300   9962311  
+          23   5489594   5519952   5576606  
+          24   2992333   2988726   2984100  
+          25   6083672   6093000   6113532  
+          26   1032949   1042520   1050493  
+          27   1896190   1907116   1920076  
+          28   2890845   2940058   2998039  
+          29   1330608   1334795   1342795  
+          30   8958013   8944469   9005644  
+          31   2085109   2081015   2088070  
+          32  19795791  19745289  19849399  
+          33  10042802  10146788  10273419  
+          34    756927    757952    755393  
+          35  11613423  11614373  11658609  
+          36   3911338   3923561   3930864  
+          37   4028977   4093465   4142776  
+          38  12802503  12784227  12805537  
+          39   1056298   1056426   1059639  
+          40   4896146   4961119   5024369  
+          41    858469    865454    869666  
+          42   6600299   6651194   6715984  
+          43  27469114  27862596  28304596  
+          44   2995919   3051217   3101833  
+          45    626042    624594    623657  
+          46   8382993   8411808   8470020  
+          47   7170351   7288000   7405743  
+          48   1844128   1831102   1815857  
+          49   5771337   5778708   5795483  
+          50    586107    585501    579315  
+          51   3474182   3411307   3004279  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}221}]:} \PY{c+c1}{\PYZsh{} Create a new column called \PYZdq{}Total incidents\PYZdq{} and add up each type wins per year to fill in the values}
+          \PY{n}{combined\PYZus{}data}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Total}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{o}{=} \PY{n}{combined\PYZus{}data}\PY{p}{(}\PY{n}{Number} \PY{n}{of} \PY{n}{Killed}\PY{p}{,} \PY{l+m+mi}{2013}\PY{p}{)} \PY{o}{+} \PY{n}{combined\PYZus{}data}\PY{p}{(}\PY{n}{Number} \PY{n}{of} \PY{n}{Injured}\PY{p}{,} \PY{l+m+mi}{2013}\PY{p}{)}\PY{p}{]}
+          \PY{n}{combined\PYZus{}data}
+           
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+          File "<ipython-input-221-c79583e65609>", line 2
+        combined\_data("Total") = combined\_data(Number of Killed, 2013) + combined\_data(Number of Injured, 2013)]
+                                                       \^{}
+    SyntaxError: invalid syntax
+    
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{grouped\PYZus{}year\PYZus{}df} \PY{o}{=} \PY{n}{clean\PYZus{}incident\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{grouped\PYZus{}year\PYZus{}df}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:}                            Number of Killed  Number of Injured
+         Year State Name                                               
+         2013 Alabama                              3                  9
+              Arizona                              8                 16
+              California                          46                139
+              Colorado                             4                  9
+              Connecticut                          2                 13
+              Delaware                             3                 10
+              District of Columbia                12                 32
+              Florida                             22                 36
+              Georgia                              5                 26
+              Illinois                            14                 78
+              Indiana                              9                 20
+              Kansas                               6                 14
+              Kentucky                             4                  9
+              Louisiana                            8                 52
+              Maryland                             5                 16
+              Michigan                             9                 62
+              Minnesota                            3                  5
+              Mississippi                          2                  6
+              Missouri                             9                 39
+              Nebraska                             0                  4
+              Nevada                               0                  4
+              New Jersey                          12                 32
+              New Mexico                           5                  4
+              New York                            15                 56
+              North Carolina                       5                 47
+              Ohio                                10                 30
+              Oklahoma                            14                 12
+              Pennsylvania                        13                 58
+              Rhode Island                         1                  7
+              South Carolina                      11                 12
+         {\ldots}                                     {\ldots}                {\ldots}
+         2018 Massachusetts                       22                 80
+              Michigan                           122                188
+              Minnesota                           26                 64
+              Mississippi                        106                136
+              Missouri                           128                215
+              Montana                              5                 13
+              Nebraska                            11                 31
+              Nevada                              61                 56
+              New Hampshire                        1                 10
+              New Jersey                          57                 72
+              New Mexico                          37                 24
+              New York                            67                150
+              North Carolina                     108                244
+              North Dakota                         3                  7
+              Ohio                               139                277
+              Oklahoma                            44                 92
+              Oregon                              31                 39
+              Pennsylvania                       136                238
+              Rhode Island                         5                 13
+              South Carolina                      89                192
+              South Dakota                         7                 13
+              Tennessee                           98                210
+              Texas                              310                374
+              Utah                                10                 33
+              Vermont                              4                  3
+              Virginia                            72                187
+              Washington                          54                 83
+              West Virginia                       23                 34
+              Wisconsin                           46                118
+              Wyoming                             10                  0
+         
+         [292 rows x 2 columns]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
