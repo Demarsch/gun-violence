@@ -10,4 +10,5 @@ def split_value(value: str) -> dict:
     for item in items:
         key_value = item.split('::')
         if len(key_value) > 1:
-            result[key_value]
+            result[key_value[0]] = result[key_value[1]]
+    return result
